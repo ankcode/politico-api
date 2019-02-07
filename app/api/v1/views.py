@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, Response
-from app.api.v1.models import CreateParty
+from app.api.v1.models import CreateParty, GetAllParties
 
 BASE_URL_BP = Blueprint("V1", __name__, url_prefix='/api/v1')
 
@@ -29,14 +29,24 @@ def requires_login(creds):
 
 @BASE_URL_BP.route('/parties', methods = ['POST'])
 @requires_login
-def parties():
+def partiesCreate():
+    """ Creates a new party if doesnot exist """
+
     if request.method == 'POST':
 
         party_val =  request.get_json(force=True)
 
         msg = CreateParty(party_val)
+        return msg
 
-    return msg
+@BASE_URL_BP.route('/parties', methods = ['GET'])
+def partiesGetAll():
+    """ Fetches all parties """
+
+    if request.method == 'GET':
+        msg = GetAllParties()
+        
+        return msg
 
 
 

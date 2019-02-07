@@ -91,4 +91,21 @@ class TestPolitico(unittest.TestCase):
         test_results = self.client.post("api/v1/parties", data=json.dumps(test_party), headers = {'content-type': 'application/json','Authorization': 'Basic {}'.format(base64.b64encode(b'admin:admin').decode('utf8'))})
         
         self.assertEqual(test_results.status_code, 406)
+    
+    def testGetAllParties(self):
+        """ Tests fetch all parties """
+
+        test_political_parties = [
+            {
+            "id":"1",
+            "name":"CCM",
+            "hqAddress":"Nairobi Kenya",
+            "logourl":"party.jpg"
+            }
+        ]
+
+        test_results = self.client.get("api/v1/parties", data=json.dumps(test_political_parties), headers = {'content-type': 'application/json'})
+
+        self.assertEqual(test_results.status_code, 200)
+
 

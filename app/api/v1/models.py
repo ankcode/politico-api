@@ -7,17 +7,19 @@ political_parties=[]
 def CreateParty(data_party):
     msgResponse = ''
 
-    if data_party in political_parties: 
-        
-        """ check if party has already been created and return already created message if true """
-
-        msgResponse = "Party already exists", 400
-
-    elif len(data_party) < 4:
+    if len(data_party) < 4:
 
         """ check if submitted data is complete, i.e has all parameters required"""
 
         msgResponse = "The information provided is incomplete please update to proceed", 417
+
+
+    elif any(data_res['name'].strip() == data_party['name'].strip() for data_res in political_parties) and (data_party['name'].strip() != "" and  data_party['id'].strip() != "" and data_party['hqAddress'].strip() != "" and  data_party['logourl'].strip() != ""):
+ 
+        
+        """ check if party has already been created and return already created message if true """
+
+        msgResponse = "Party already exists", 400
 
     elif not data_party["id"].isdigit():
 
@@ -50,6 +52,21 @@ def CreateParty(data_party):
 
         political_parties.append(data_party)
         msgResponse = jsonify(data_party), 201
+
+    return msgResponse
+
+
+def GetAllParties():
+
+    """ Fetch all political parties """
+    
+    msgResponse = ''
+    if len(political_parties) > 0:
+
+        msgResponse = jsonify(political_parties), 200
+
+    else:
+        msgResponse = "No party created", 200
 
     return msgResponse
 
