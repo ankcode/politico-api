@@ -70,6 +70,27 @@ def GetAllParties():
 
     return msgResponse
 
+def GetSpecificParty(partyid):
+    msgResponse = ""
+
+    if len(political_parties) != 0:
+
+        for party in political_parties:
+            if party['id'] == partyid and party['id'] != "":
+
+                data_party = party
+                msgResponse = jsonify(data_party), 200
+
+            else:
+
+                msgResponse = "Party Not found", 404
+            
+    else:
+
+         msgResponse = "No parties found", 404
+        
+    return msgResponse
+
     
 
 
