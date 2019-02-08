@@ -38,7 +38,7 @@ class TestPolitico(unittest.TestCase):
 
         test_results = self.client.post("api/v1/parties", data=json.dumps(test_party), headers = {'content-type': 'application/json','Authorization': 'Basic {}'.format(base64.b64encode(b'admin:admin').decode('utf8'))})
         
-        self.assertEqual(test_results.status_code, 417)
+        self.assertEqual(test_results.status_code, 406)
 
     def testIDValidity(self):
         """ Tests ID validity """
@@ -150,6 +150,74 @@ class TestPolitico(unittest.TestCase):
 
         self.assertEqual(test_results.status_code, 200)
         self.assertEqual(test_fail_results.status_code, 404)
+
+
+        """ Tests for political offices endpoints 
+
+            POST /offices
+            GET  /offices
+            GET  /offices/<office-id>
+        
+        """
+
+    def testCreateOffice(self):
+        """ Tests creating a new office """
+        test_office = {
+                        "id":"1",
+                        "type":"Presidential",
+                        "name":"President"
+                    }
+
+        test_results = self.client.post("api/v1/offices", data=json.dumps(test_office), headers = {'content-type': 'application/json'})
+        return test_results
+
+    def testOfficeValidity(self):
+        """ Tests if all information regarding the office is captured """
+        test_office = {
+                        "id":"1",
+                        "type":"Presidential",
+                    }
+
+        test_results = self.client.post("api/v1/offices", data=json.dumps(test_office), headers = {'content-type': 'application/json'})
+        
+        self.assertEqual(test_results.status_code, 406)
+
+    def testOfficeIDValidity(self):
+        """ Tests Office ID validity """
+        test_office = {
+                        "id":"",
+                        "type":"Presidential",
+                        "name":"President"
+                    }
+
+        test_results = self.client.post("api/v1/offices", data=json.dumps(test_office), headers = {'content-type': 'application/json'})
+        
+        self.assertEqual(test_results.status_code, 406)
+
+    def testOfficeNameValidity(self):
+        """ Tests Office Name Validity """
+        test_office = {
+                        "id":"1",
+                        "type":"Presidential",
+                        "name":""
+                    }
+
+        test_results = self.client.post("api/v1/offices", data=json.dumps(test_office), headers = {'content-type': 'application/json'})
+        
+        self.assertEqual(test_results.status_code, 406)
+
+    def testOfficeTypeValidity(self):
+        """ Tests Office Type Validity """
+        test_office = {
+                        "id":"1",
+                        "type":"",
+                        "name":"President"
+                    }
+
+        test_results = self.client.post("api/v1/offices", data=json.dumps(test_office), headers = {'content-type': 'application/json'})
+        
+        self.assertEqual(test_results.status_code, 406)
+
 
 
     

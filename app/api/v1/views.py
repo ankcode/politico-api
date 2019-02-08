@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, Response
-from app.api.v1.models import CreateParty, GetAllParties, GetSpecificParty, EditPartyName, DeleteParty
+from app.api.v1.models import CreateParty, GetAllParties, GetSpecificParty, EditPartyName, DeleteParty, CreateOffice
 
 BASE_URL_BP = Blueprint("V1", __name__, url_prefix='/api/v1')
 
@@ -78,6 +78,17 @@ def delParty(party_id):
 
         msg = DeleteParty(party_id)
         
+        return msg
+
+@BASE_URL_BP.route('/offices', methods = ['POST'])
+def officeCreate():
+    """ Creates a new office if doesnot exist """
+
+    if request.method == 'POST':
+
+        office_val =  request.get_json(force=True)
+
+        msg = CreateOffice(office_val)
         return msg
 
 
