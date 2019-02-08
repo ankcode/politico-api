@@ -120,7 +120,7 @@ def EditPartyName(party_id, party_name):
 
 
 def DeleteParty(partyid):
-    """ Deletes specific party """
+    """ Deletes specific party  """
     msgResponse = ""
 
     if len(political_parties) != 0:
