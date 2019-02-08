@@ -118,6 +118,30 @@ def EditPartyName(party_id, party_name):
         
     return msgResponse
 
+
+def DeleteParty(partyid):
+    """ Deletes specific party """
+    msgResponse = ""
+
+    if len(political_parties) != 0:
+
+        for party in political_parties:
+            if party['id'] == partyid and party['id'] != "":
+
+                political_parties.remove(party)
+                msgResponse = jsonify(political_parties), 200
+
+            else:
+
+                msgResponse = "Party Not found", 404
+            
+    else:
+
+         msgResponse = "No parties found", 404
+        
+    return msgResponse
+
+
     
 
 
