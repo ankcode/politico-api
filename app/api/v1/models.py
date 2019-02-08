@@ -295,3 +295,38 @@ def GetAllOffices():
         msgResponse = jsonify(responseCreated), 200
 
     return msgResponse
+
+
+def GetSpecificOffice(officeid):
+    msgResponse = ""
+
+    if len(political_office) != 0:
+
+        for office in political_office:
+            if office['id'] == officeid and office['id'] != "":
+
+                data_office = office
+
+                responseCreated = {"status": 200,
+                                   "data": [data_office]
+                                   }
+                msgResponse = jsonify(responseCreated), 200
+
+            else:
+
+                responseCreated = {"status": 404,
+                                   "message": "Office not found"
+                                   }
+
+                msgResponse = jsonify(responseCreated), 404
+
+    else:
+
+        responseCreated = {"status": 404,
+                           "message": "No offices found"
+                           }
+
+        msgResponse = jsonify(responseCreated), 404
+
+    return msgResponse
+
