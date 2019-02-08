@@ -273,3 +273,25 @@ def CreateOffice(data_office):
         msgResponse = jsonify(responseCreated), 201
 
     return msgResponse
+
+
+def GetAllOffices():
+    """ Fetch all political offices """
+
+    msgResponse = ''
+    if len(political_office) > 0:
+
+        responseCreated = {"status": 200,
+                           "data": political_office
+                           }
+        msgResponse = jsonify(responseCreated), 200
+
+    else:
+
+        responseCreated = {"status": 200,
+                           "message": "No offices created yet."
+                           }
+
+        msgResponse = jsonify(responseCreated), 200
+
+    return msgResponse
