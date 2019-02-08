@@ -126,6 +126,30 @@ class TestPolitico(unittest.TestCase):
 
         self.assertEqual(test_results.status_code, 200)
         self.assertEqual(test_fail_results.status_code, 404)
+    
+    def testDeleteSpecificParty(self):
+        """ Tests deletes specific party """
+
+        test_political_parties = [
+            {
+            "id":"1",
+            "name":"CCM",
+            "hqAddress":"Nairobi Kenya",
+            "logourl":"party.jpg"
+            },
+            {
+            "id":"2",
+            "name":"TNA",
+            "hqAddress":"Nairobi Kenya",
+            "logourl":"party.jpg"
+            }
+        ]
+
+        test_results = self.client.get("api/v1/parties/1", data=json.dumps(test_political_parties), headers = {'content-type': 'application/json'})
+        test_fail_results = self.client.get("api/v1/parties/3", data=json.dumps(test_political_parties), headers = {'content-type': 'application/json'})
+
+        self.assertEqual(test_results.status_code, 200)
+        self.assertEqual(test_fail_results.status_code, 404)
 
 
     

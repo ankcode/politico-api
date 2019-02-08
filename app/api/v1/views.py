@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, Response
-from app.api.v1.models import CreateParty, GetAllParties, GetSpecificParty, EditPartyName
+from app.api.v1.models import CreateParty, GetAllParties, GetSpecificParty, EditPartyName, DeleteParty
 
 BASE_URL_BP = Blueprint("V1", __name__, url_prefix='/api/v1')
 
@@ -67,6 +67,16 @@ def EditParty(party_id):
         party_name =  request.get_json(force=True)
 
         msg = EditPartyName(party_id, party_name)
+        
+        return msg
+
+@BASE_URL_BP.route('/parties/<party_id>', methods = ['DELETE'])
+def delParty(party_id):
+    """ Delete a specific party """
+
+    if request.method == 'DELETE':
+
+        msg = DeleteParty(party_id)
         
         return msg
 
