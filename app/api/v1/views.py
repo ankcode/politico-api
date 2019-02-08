@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, Response
-from app.api.v1.models import CreateParty, GetAllParties, GetSpecificParty, EditPartyName, DeleteParty, CreateOffice, GetAllOffices
+from app.api.v1.models import CreateParty, GetAllParties, GetSpecificParty, EditPartyName, DeleteParty, CreateOffice, GetAllOffices, GetSpecificOffice
 
 BASE_URL_BP = Blueprint("V1", __name__, url_prefix='/api/v1')
 
@@ -55,7 +55,7 @@ def partiesGetAll():
 
 @BASE_URL_BP.route('/parties/<party_id>', methods=['GET'])
 def partiesGetSpecific(party_id):
-    """ Fetches all parties """
+    """ Fetches specific party """
 
     if request.method == 'GET':
 
@@ -106,5 +106,15 @@ def officesGetAll():
 
     if request.method == 'GET':
         msg = GetAllOffices()
+
+        return msg
+
+@BASE_URL_BP.route('/offices/<office_id>', methods=['GET'])
+def officesGetSpecific(office_id):
+    """ Fetches specific office """
+
+    if request.method == 'GET':
+
+        msg = GetSpecificOffice(office_id)
 
         return msg

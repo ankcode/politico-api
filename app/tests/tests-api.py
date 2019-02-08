@@ -241,7 +241,7 @@ class TestPolitico(unittest.TestCase):
             {
                 "id": "1",
                 "type": "Presidential",
-                        "name": "President"
+                "name": "President"
             }
         ]
 
@@ -249,3 +249,23 @@ class TestPolitico(unittest.TestCase):
             test_offices), headers={'content-type': 'application/json'})
 
         self.assertEqual(test_results.status_code, 200)
+
+    
+    def testGetSpecificOffice(self):
+        """ Tests fetch specific party """
+
+        test_offices = [
+            {
+                "id": "1",
+                "type": "Presidential",
+                "name": "President"
+            }
+        ]
+
+        test_results = self.client.get("api/v1/parties/1", data=json.dumps(
+            test_offices), headers={'content-type': 'application/json'})
+        test_fail_results = self.client.get("api/v1/parties/2", data=json.dumps(
+            test_offices), headers={'content-type': 'application/json'})
+
+        self.assertEqual(test_results.status_code, 200)
+        self.assertEqual(test_fail_results.status_code, 404)
