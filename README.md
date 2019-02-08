@@ -21,7 +21,7 @@ The following are the set of API endpoints for the politico app in this repo:
 
 ## API Endpoints
 
-| Method        | Endpoints                       |Specifications                              |
+| Method        | Endpoints                       |Description                            |
 | ------------- |:-------------------------------:|--------------------------------------------|
 | POST          | api/v1/parties                  |Create a political party.                   |
 | GET           | api/v1/parties/party-id    |Fetch a specific political party record.    |
