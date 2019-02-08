@@ -91,6 +91,33 @@ def GetSpecificParty(partyid):
         
     return msgResponse
 
+
+def EditPartyName(party_id, party_name):
+    """ Edits name of a specific party """
+
+    msgResponse = ""
+
+    if len(political_parties) != 0:
+
+        for party in political_parties:
+            if party['id'] == party_id:
+
+                party['name'] = party_name['name']
+
+                data_party = dict(id=party_id, name=party['name'])
+
+                msgResponse = jsonify(data_party), 200
+
+            else:
+
+                msgResponse = "Party Not found", 404
+            
+    else:
+
+         msgResponse = "No parties found", 404
+        
+    return msgResponse
+
     
 
 

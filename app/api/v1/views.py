@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, Response
-from app.api.v1.models import CreateParty, GetAllParties, GetSpecificParty
+from app.api.v1.models import CreateParty, GetAllParties, GetSpecificParty, EditPartyName
 
 BASE_URL_BP = Blueprint("V1", __name__, url_prefix='/api/v1')
 
@@ -55,6 +55,18 @@ def partiesGetSpecific(party_id):
     if request.method == 'GET':
 
         msg = GetSpecificParty(party_id)
+        
+        return msg
+
+@BASE_URL_BP.route('/parties/<party_id>/name', methods = ['PATCH'])
+def EditParty(party_id):
+    """ Fetches all parties """
+
+    if request.method == 'PATCH':
+
+        party_name =  request.get_json(force=True)
+
+        msg = EditPartyName(party_id, party_name)
         
         return msg
 
