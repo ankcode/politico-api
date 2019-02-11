@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Politico APIs</title>
+    </head>
+    <body style="margin: 25px 0px 0px 0px; padding:15px;">
+        <h1 style="text-align:center">Welcome to Politico APIs</h1>
+        <p>Use <a href="https://www.getpostman.com/" target="_blank" >POSTMAN</a> to test the following APIs remotely.</p>
+        <table border="1" style="border-collapse:collapse; width:100%">
+            <tr>
+                <th>Method</th>
+                <th>Endpoint</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td><pre>/api/v1/parties</pre></td>
+                <td>Create new party</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td><pre>/api/v1/parties</pre></td>
+                <td>Fetch all parties</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td><pre>/api/v1/parties/&lt;party-id&gt;</pre></td>
+                <td>Fetch Specific Party</td>
+            </tr>
+            <tr>
+                <td>PATCH</td>
+                <td><pre>/api/v1/parties/&lt;party-id&gt;/name</pre></td>
+                <td>Edit Party name</td>
+            </tr>
+            <tr>
+                <td>DELETE</td>
+                <td><pre>/api/v1/parties/&lt;party-id&gt;</pre></td>
+                <td>Delete Party</td>
+            </tr>
+            <tr>
+                <td>POST</td>
+                <td><pre>/api/v1/offices</pre></td>
+                <td>Create new office</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td><pre>/api/v1/offices</pre></td>
+                <td>Fetch all offices</td>
+            </tr>
+            <tr>
+                <td>GET</td>
+                <td><pre>/api/v1/offices/&lt;office-id&gt;</pre></td>
+                <td>Fetch a specific office</td>
+            </tr>
+        </table>
+    </body>
+</html>

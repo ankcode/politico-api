@@ -1,7 +1,9 @@
-from flask import Blueprint, jsonify, request, Response
+from flask import Blueprint, jsonify, request, Response, abort, render_template
+from jinja2 import TemplateNotFound
 from app.api.v1.models import CreateParty, GetAllParties, GetSpecificParty, EditPartyName, DeleteParty, CreateOffice, GetAllOffices, GetSpecificOffice
 
 BASE_URL_BP = Blueprint("V1", __name__, url_prefix='/api/v1')
+HOME_PAGE = Blueprint("homepage", __name__, template_folder='templates')
 
 
 def login(username, password):
@@ -30,6 +32,10 @@ def requires_login(creds):
     return getCredentials
 
 
+@HOME_PAGE.route('/')
+def index():
+    return render_template('index.html')
+    
 @BASE_URL_BP.route('/parties', methods=['POST'])
 @requires_login
 def partiesCreate():

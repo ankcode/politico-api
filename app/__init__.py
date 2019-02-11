@@ -9,6 +9,7 @@ def create_app(config_name):
     app.config.from_object(app_config['development'])
     app.config.from_pyfile('config.py')
     app.register_blueprint(views.BASE_URL_BP)
+    app.register_blueprint(views.HOME_PAGE)
     
     return app
 
