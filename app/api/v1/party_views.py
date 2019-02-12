@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request, Response, abort, render_template
 from jinja2 import TemplateNotFound
 from app.api.v1.party_models import PoliticalParties
 
-BASE_URL_BP = Blueprint("V1", __name__, url_prefix='/api/v1')
+BASE_URL_BP = Blueprint("parties", __name__, url_prefix='/api/v1')
 HOME_PAGE = Blueprint("homepage", __name__, template_folder='templates')
 
 
