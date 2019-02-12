@@ -21,7 +21,7 @@ class PoliticalParties:
 
             msgResponse = jsonify(responseCreated), 406
 
-        elif any(political_parties[i]["name"] == party_data["name"] for i in political_parties.keys()):
+        elif any(political_parties[i]["name"] == party_data["name"] for i in political_parties.keys()) and (party_data["hqAddress"].strip() != "" and party_data["logourl"].strip() != ""):
 
             """ check if party has already been created and return already created message if true """
 
